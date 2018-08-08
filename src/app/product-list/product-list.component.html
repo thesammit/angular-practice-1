@@ -1,0 +1,71 @@
+<div class="card">
+  <div class="card-header">
+    {{pageTitle}}
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="filterType" class="mr-2">Filter on:</label>
+            <select [(ngModel)]="filterType" class="form-control" id="filterType" required>
+              <option [value]="filter" *ngFor="let filter of productHeaders">{{filter}}</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="filterType !== 'Price' && filterType !== 'Rating'" class="col-md-6">
+        <div class="form-inline">
+          <div class="form-group">
+            <label for="listFilter" class="mr-2">Filter by:</label>
+            <input id=listFilter type="text" [style.width.px]="textWidth" [(ngModel)]="listFilter" class="form-control form-control-sm" />
+          </div>
+        </div>
+      </div>
+      <div *ngIf="filterType === 'Price' || filterType === 'Rating'" class="col-md-6">
+          <div class="form-inline">
+            <div class="form-group">
+              <label for="listFilterfrom" class="mr-2">Filter between:</label>
+              <input id=listFilterfrom type="text" [style.width.px]="textWidth" [(ngModel)]="listFilterFrom" class="form-control form-control-sm mr-1" /> and
+              <input id=listFilterto type="text" [style.width.px]="textWidth" [(ngModel)]="listFilterTo" class="form-control form-control-sm ml-1" />
+            </div>
+          </div>
+        </div>
+        <div class="offset-md-1 col-md-2">
+        <button class="btn btn-primary btn-sm pull-right" (click)="toggleImage()">
+          {{isImageDisplayed ? 'Hide' : 'Show'}} Image
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Filtered on {{filterType}} by: {{listFilter}}</h4>
+      </div>
+    </div>
+    <!-- Table for the product list-->
+    <div class="table-responsible">
+      <table class="table" *ngIf="filteredProducts && filteredProducts.length">
+        <thead>
+          <tr>
+            <th *ngIf="isImageDisplayed">Image</th>
+            <th *ngFor="let header of productHeaders">{{header}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of filteredProducts">
+            <td *ngIf="isImageDisplayed">
+              <img 
+              [src]="product.imageUrl" [title]="product.productName" [alt]="product.productName"
+              [style.width.px]="imageWidth"/></td>
+            <td>{{product.productName}}</td>
+            <td>{{product.productCode | convertToSpaces:'-'}}</td>
+            <td>{{product.releaseDate | date}}</td>
+            <td>{{product.price | currency :'INR':'symbol':'1.2-2'}}</td>
+            <td>{{product.rating}}</td>
+          </tr>
+        </tbody>
+      </table>
+      <!-- Table ends here-->
+    </div>
+  </div>
+</div>
