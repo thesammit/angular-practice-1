@@ -70,6 +70,7 @@ export class ProductListComponent implements OnInit {
   headerMap: Object;
   filterType: string;
   textWidth: number = 55;
+  recievedMessage: string;
  
   constructor() {
     this.productHeaders = ['Product','Code','Availabe','Price','Rating'];
@@ -113,7 +114,12 @@ export class ProductListComponent implements OnInit {
     this.isImageDisplayed = !this.isImageDisplayed;
   }
 
+  onRatingClicked(message: string) : void{
+    this.recievedMessage = message;
+  }
+
   filterProducts(criteria: string): IProduct[] {
+    this.recievedMessage = "";
     criteria = criteria.toLowerCase();
     console.log(this.headerMap[this.filterType]);
     return this.products.filter((product: IProduct) =>
@@ -121,6 +127,7 @@ export class ProductListComponent implements OnInit {
     );
   }
   filterProductsRange(criteriaFrom: string, criteriaTo: string): IProduct[] {
+    this.recievedMessage = "";
     criteriaTo = +criteriaFrom > +criteriaTo ? null : criteriaTo;
     console.log(this.headerMap[this.filterType]);
     if (criteriaTo && criteriaFrom) {
