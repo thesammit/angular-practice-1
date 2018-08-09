@@ -8,7 +8,7 @@
         <div class="form-inline">
           <div class="form-group">
             <label for="filterType" class="mr-2">Filter on:</label>
-            <select [(ngModel)]="filterType" class="form-control" id="filterType" required>
+            <select [(ngModel)]="filterType" class="form-control form-control-sm" id="filterType" required>
               <option [value]="filter" *ngFor="let filter of productHeaders">{{filter}}</option>
             </select>
           </div>
