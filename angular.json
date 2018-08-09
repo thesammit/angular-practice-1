@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "apm-manager": {
+    "angular-practice-1": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/apm-manager",
+            "outputPath": "dist/angular-practice-1",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -50,18 +50,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "apm-manager:build"
+            "browserTarget": "angular-practice-1:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "apm-manager:build:production"
+              "browserTarget": "angular-practice-1:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "apm-manager:build"
+            "browserTarget": "angular-practice-1:build"
           }
         },
         "test": {
@@ -95,7 +95,7 @@
         }
       }
     },
-    "apm-manager-e2e": {
+    "angular-practice-1-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,11 +103,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "apm-manager:serve"
+            "devServerTarget": "angular-practice-1:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "apm-manager:serve:production"
+              "devServerTarget": "angular-practice-1:serve:production"
             }
           }
         },
@@ -123,5 +123,5 @@
       }
     }
   },
-  "defaultProject": "apm-manager"
+  "defaultProject": "angular-practice-1"
 }
