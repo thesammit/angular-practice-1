@@ -61,7 +61,7 @@
             <td>{{product.productCode | convertToSpaces:'-'}}</td>
             <td>{{product.releaseDate | date}}</td>
             <td>{{product.price | currency :'INR':'symbol':'1.2-2'}}</td>
-            <td>{{product.rating}}</td>
+            <td><app-star [rating]="product.rating"></app-star></td>
           </tr>
         </tbody>
       </table>
