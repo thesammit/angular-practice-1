@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IProduct } from './product';
-import { ProductService } from '../services/product.service';
+import { IProduct } from '../model/product';
+import { ProductService } from './product.service';
+import { Utils } from '../util/utils';
 
 @Component({
   selector: 'app-product-list',
@@ -21,6 +22,7 @@ export class ProductListComponent implements OnInit {
   filterType: string;
   textWidth: number = 55;
   recievedMessage: string;
+  errorMessage: any;
  
   constructor(private productService: ProductService) {
     this.productHeaders = ['Product','Code','Availabe','Price','Rating'];
@@ -35,8 +37,14 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
-    this.filteredProducts = this.products;
+    this.productService.getProducts().subscribe(
+      products => {
+        debugger;
+        this.products = products;
+        this.filteredProducts = Utils.clone(this.products);
+      },
+      error => this.errorMessage = error
+    );
   }
 
   public get listFilter(): string {
